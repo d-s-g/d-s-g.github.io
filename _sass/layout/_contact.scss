@@ -14,15 +14,13 @@
 			@include vendor('display', 'flex');
 			padding: 0 !important;
 
+			a {
+				margin-right: 1rem;
+			}
+			
 			> :nth-child(2n - 1) {
 				@include padding(4em, 0, (0, 3em, 0, 0));
-				border-right: solid 1px _palette(border);
-				width: 60%;
-			}
-
-			> :nth-child(2n) {
-				padding-left: 3em;
-				width: 40%;
+				width: 100%;
 			}
 
 			> .split {
@@ -69,9 +67,6 @@
 				> .split {
 					> * {
 						@include padding(3em, 0, (0, 0, 0, 0));
-
-						&:before {
-						}
 					}
 
 					> :first-child {
