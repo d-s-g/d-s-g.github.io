@@ -20,5 +20,5 @@ ChenMed was built on flexbox. I needed to find visual regression tester with pha
 [pantheon](https://pantheon.io/docs/guides/visual-diff-with-wraith/){:target="_blank"}. Wraith also had an incoming pull request with headless chrome (now merged) which allowed for future frontend technologies to be tested. 
 
 ### How is me building out with wraith help the team?
-This testing layer was using visual regression testing an allowed us to 
+This testing layer was using visual regression testing and allowed us to 
 seamlessly transition between integration phase(develop) -> testing phase(master) -> deployment phase(release) allowing the team members to get a head start on the next sprint.

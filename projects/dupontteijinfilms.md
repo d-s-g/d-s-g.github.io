@@ -18,7 +18,7 @@ difficult to navigate. The site itself did not drive sales and
 Dupont Teijin films was looking to improve engagement to the sales team.
 
 ### What I delivered.
-I built a custom theme WordPress site. Based of a custom design
+I built a custom theme WordPress site. Based on a custom design
 and strategy from in house designers. The site was designed to showcase products, by type and drive interest to users navigating the site. The client also wanted the site to show off key product types that Dupont Teijin films specializes in.
 I implemented a full custom theme, built
 with ACF, custom post types and a sass front end. This was my

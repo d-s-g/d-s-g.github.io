@@ -15,7 +15,7 @@ permalink: projects/chenmed
 		<header class="major">
 			<h2>Projects</h2>
 		</header>
-		<p>ChenMed is a senior healthcare provider in the US healthcare market. They have 3 main brands that serve different markets in the united states. JenCare Senior medical centers (Virginia, Georgia, Illinois, Kentucky and Louisiana) Chen Senior medical centers (Miami Florida) Dedicated Medical centers (Tampa Bay Florida, Lakeland Florida) ChenMed also has 3 internal business sites that were worked on. 
+		<p>ChenMed is a senior healthcare provider in the US healthcare market. They have 3 main brands that serve different markets in the united states. JenCare Senior medical centers (Virginia, Georgia, Illinois, Kentucky and Louisiana) Chen Senior medical centers (Miami, Florida) Dedicated Medical centers (Tampa Bay, Florida & Lakeland, Florida) ChenMed also has 3 internal business sites that were worked on. 
         <br><br>Development Environment ChenMed is a large Drupal 8 project, with 2 different multi-sites at its core. 1 external and 1 internal as well as supporting apis. The frontend of the site is sass - es6 - twig.</p>
 	</div>
 </section>

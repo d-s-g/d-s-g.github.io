@@ -37,7 +37,7 @@ application I had to:
 - Update DNS to point to the new production site
 
 Once this was complete, I could then build the frontend.
-The front end was mostly straight forward, we used facetwp
+This was mostly straight forward, we used facetwp
 to allow for quick ajax searches. The only tricky thing was
 managing state on the front end of the application.
 
