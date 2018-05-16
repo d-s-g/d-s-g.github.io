@@ -1,0 +1,37 @@
+sitemap
+
+Homepage
+    About
+    Work Grid - Links
+    Contact - Linkdin/gmail/github
+
+Work grid
+    Side Projects (landing pages)
+    Engineering projects (landing pages)
+    Internal Projects (landing pages)
+    Completed Works (landing pages)
+
+Sideprojects
+    ELM (Single) (these need to be full case studies)
+    React - Redux GZCL jacked and tan 2.0 calculator. (Single) (these need to be full case studies)
+
+Engineering projects
+    Chenmed : drupal multisite  (these need to be full case studies)
+        Overview of project 
+        Overview of tasks completed
+
+    MedStar health : Wordpress Multi site (partial case study)
+        Overview of project
+        Overview of tasks completed
+
+Internal Projects 
+    Dockerizing wraith (partial case study)
+    Docker tasks at colab (partial case study)
+    Docker GO CLI (full case study)
+
+Works completed/features
+    DTF
+    HILB RELO
+    Prodigyr
+    Got2triad
+    look at active colab to see what else i want to display.    

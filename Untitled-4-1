@@ -1,0 +1,43 @@
+Docker Golang CLI
+
+    What was the problem?
+        During our move to docker. We noticed that inconsistancies in node versions were effecting
+        buildscripts slowing down support and maintence. We also realized that the future interal updates
+        to the Dockerfile would need to be manually deployed. As COLAB has worked on 200+ sites with
+        50+ in active support and mantinece we needed a solution to update the Dockerfile, 
+        docker-compose.yml and our entrypoint.
+
+    How does it work?
+        The inital phase of this project was built by a senior developer. This developer 
+        wired out the go files and all the needed dependencies. The inital state of the cli had
+        --help, --update, --start (look at master).
+
+        The gocli uses the docker go api (link to api), as a base. This is used to control
+        the start - stop - build functions. (show code) 
+
+        --update
+            gets the continater type
+            runs an update function based on type
+                pulls latest from git to /tmp
+                rsyncs /tmp to directory containing docker-compose
+                update internal COLAB_VERSION environmental variable.
+
+        I built some internal commands the first is --nuke which simply kills and rebuilds a box
+        --nuke
+
+        moves a wordpress siteout of a /web root directory. 
+           explain how it uses (prompt stdout)
+
+        --move
+
+        --init explain how it uses (prompt stdin and stout)
+         
+    How does did it help the team?
+        Where a developer before would need to 
+        pull down a site -> add docker -> customize docker-compose -> add plugins -> build
+        Now 
+        pull down a site -> run dr --init -> add plugins -> build
+
+        The next phase of this CLI is likely using composer to manage plugins! Allowing the devs
+        too simply pull down a site -> run dr --init -> build
+        
