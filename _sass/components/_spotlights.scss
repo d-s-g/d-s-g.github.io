@@ -51,7 +51,7 @@
 				@include vendor('justify-content', 'center');
 				@include vendor('align-items', 'center');
 				@include padding(2em, 3em);
-				width: 70%;
+				width: 100%;
 
 				> .inner {
 					margin: 0 auto;
