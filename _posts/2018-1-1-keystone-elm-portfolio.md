@@ -8,29 +8,29 @@ permalink: keystone-elm
 
 Elm is a front end framework much like react-redux or vue-vuex. These frameworks use unidirectional data binding architectures as a solution for managing application state for more complicated ux. 
 
-These front end frameworks do this by separating the runtime, from the core of the program.
-The application uses a store (vuex or redux) and this holds the state of the application. When an event happens on the page the event triggers a prop(react) or a mutation(vue) to update the store. Then this updates the state of the application.
+These front end frameworks do this by separating the runtime from the core of the program.
+The application uses a store (vuex or redux) and this holds the state of the application. When an event happens on the page, the event triggers a prop(react) or a mutation(vue) to update the store; this updates the state of the application.
 
-Elm works the same way. The runtime is separated from the elm program. When an event happens on the page a message is sent to an update function which triggers a function that updates the state and changes the application.
+Elm works the same way in that runtime is separated from the ELM program. When an event happens on the page a message is sent to an update function which triggers a function that updates the state and changes the application.
 
-The bonus that elm gives is the strong typing and the complied functional language.
-The benefit that this is that the data of the application is typed. This means the chance of side effects and bugs happening in the runtime is greatly reduced.
+The advantage of elm is that it enables strong typing in the compiled functional language.
+The benefit of this feature is that the data of the application is typed. This means the chance of side effects and bugs occurring in the runtime is greatly reduced.
 
-With all this in mind I built a portfolio for a phd student. Talking with the client I was asked to make a site that was easy to add content and could show published works and work interests. I felt that this was a good use case for a headless cms with a custom front end.
+With all this in mind, I used my knowledge to create a portfolio for a PHD student's research. Talking with the client I was asked to make a site that was easy to add content and could show published works and work interests. I noticed that this project provided an opportunity to utilize a headless CMS with a custom front end.
 
-The headless cms chosen was keystone js. Get getting the api endpoint was set up was easy and this is consumed by the elm application. 
+The headless CMS chosen was keystoneJS. Getting the API endpoint set up was easy and this is consumed by the elm application. 
 
-We will talk about 2 things - How the application displays its initial post list and how the application controls routes. By doing this, we hope to display our knowledge of elm and how  unidirectional data binding works in general. 
+The following code will address two things: How the application displays its initial post list and how the application controls routes. By doing this, we hope to display our knowledge of elm and how unidirectional data binding works in general. 
 
 ## Initial state
 
-The initial state of the application handles the request and consumption of the keystone api endpoint. A list of posts is served as a JSON api by the keystone backend at `api/posts/list`.
+The initial state of the application handles the request and consumption of the keystone API endpoint. A list of posts is served as a JSON API by the keystone backend at `api/posts/list`.
 
-On init of the application we fetch this list of posts. These posts are served as an agnostic type. There is no typing in keystone and nothing added to the api to tell elm what sort of data is being served on end point.
+On the initialization of the application we fetch this list of posts. These posts are served as an agnostic type. There is no typing in keystone and nothing added to the API to tell elm what sort of data is being served on end point.
 
 So when we get our data from the JSON end point, we need to let elm know what type of data is being consumed, to do this elm has the concept of decoding the type of data into an elm type.
 
-Our Post data type looks like this.
+The Post data type looks like this.
 
 ```elm
 type alias Content =
@@ -76,8 +76,8 @@ postDecoder =
         |> required "content" contentDecoder 
 ```
 
-At this point we have our consumed our api, now we need to display our data on the frontend.
-To understand how this works we need to understand how state is managed in elm.
+At this point we have consumed our API, now the data needs to be displayed on the front end.
+To understand how this works, we need to understand how state is managed in elm.
 
 First the program runs with this code
 
@@ -103,11 +103,11 @@ init location =
     in 
         ( initialModel currentRoute, fetchPosts )
 ```
-Passes it to a Routing program. Notice that this function contains scope. Where currentRoute is defined as the current location passed to this function. This scope does not leak from this function.
+The init location function then passes it to a routing program. Notice that this function contains scope. Where currentRoute is defined as the current location passed to this function. This scope does not leak from this function.
 
 ## Routing
 
-A Route is an elm type that is defined like this 
+A Route is an elm type that is defined like this: 
 
 ```elm
 type Route
@@ -117,10 +117,10 @@ type Route
     | NotFoundRoute
 ```
 
-These are the different routes of our application. As this is the init of the application we are only focusing on the `HomeRoute`
+These are the different routes of our application. As this is the init of the application, we are only focusing on `HomeRoute`
 In the init function call above `init : Location -> ( Model, Cmd Msg )` we see that the `Model` of the application is returned.
 
-This uses the `Model` type. A model in elm is the current model (state) of the application. Our `Model` type looks like this
+This uses the `Model` type. A model in elm is the current model (state) of the application. Our `Model` type looks like this:
 
 ```elm
 type alias Model = 
@@ -131,7 +131,7 @@ type alias Model =
     }
 ```
 
-Our model contains a list of posts decoded from the API. The current route, the number of times the route changed. To parse the route we look at the parseLocation function.
+Our model contains a list of posts decoded from the API. The current route and the number of times the route changed. To parse the route we look at the parseLocation function.
 
 ```elm
 parseLocation : Location -> Route
@@ -156,7 +156,7 @@ fetchPosts =
     |> Cmd.map Msgs.OnFetchPosts
 ```
 
-a function that gets the data from the `fetchPostsUrl`. Sends the request and triggers a message or `Msg` to the `update` function,
+the fetchPosts function gets the data from the `fetchPostsUrl`. It then sends the request and triggers a message or `Msg` to the `update` function,
 
 ```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -178,7 +178,7 @@ update msg model =
             ( { model | info = "Image loaded successfully!" }, Cmd.none )
 ```
 
-Which updates the model to contain the List of posts `{ model | posts = response }`
+The model is updated to contain the list of posts `{ model | posts = response }`
 and finally allows us to call the view function, and begin the rendering of the posts on the page.
 
 ```elm
@@ -191,7 +191,7 @@ view model =
         ]
 ```
 
-The view function takes the model and passes it to 3 functions. The `viewHeader` and `viewFooter` functions which renders the header and footer and the `page` function which renders the page views. Let us look at the `page` function.
+The view function takes the model and passes it to 3 functions. The `viewHeader` and `viewFooter` functions which renders the header, footer, and the `page` function which renders the page views. Let us look at the `page` function.
 
 ```elm
 page : Model -> Html Msg
@@ -210,14 +210,11 @@ page model =
             notFoundView
 ```
 
-The page function is passed the model from the view function and using . notation checks the 
+The model is passed into the page function from the view function and using . notation checks the 
 route with a case statement. We are rendering `Models.HomeRoute` so we trigger 
 `Models.HomeRoute -> Posts.List.viewPosts model.posts` which takes the post list and renders them to the page.
 
-Thus to render our application, our event graph looks like this
-
-
 This is the common pattern for unidirectional data flows. An event happens, we pass the event to a function that updates the store and based on our new state we render out our new view. My next project will be exploring how vue and vuex work together to handle state on a map.
 
-To view this project please go to my github 
-[here](https://github.com/d-s-g/keystone-elm-joe-morina){:target="_blank"}, and view the test domain [here](https://keystone-elm-joe-morina.herokuapp.com/){:target="_blank"}.
+To view this project please go to the following github
+[link](https://github.com/d-s-g/keystone-elm-joe-morina){:target="_blank"}, and view the test domain [here](https://keystone-elm-joe-morina.herokuapp.com/){:target="_blank"}.

@@ -36,3 +36,18 @@
 			}
 
 	}
+
+	.highlight {
+		position: relative;
+		z-index: 1;
+
+		&:before {
+			content: "";
+			position: absolute;
+			background-color: rgba(155,241,255,0.5);
+			width: 100%;
+			height: 8px;
+			bottom: 0;
+			z-index: 0;
+		}
+	}

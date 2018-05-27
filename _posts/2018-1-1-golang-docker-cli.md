@@ -1,39 +1,37 @@
 ---
 layout: post
 title: Go Docker Cli
-description: docker cli which allows for the creation of docker-compose file with cli.
+description: docker cli which allows for the creation of a docker-compose file with a cli.
 image: assets/images/docker-go-cli.png
 permalink: golang-docker-cli
 ---
 
-Docker is a great tools for developers. At COLAB we use docker to manage our projects.
-We have docker containers for many development environments such as WordPress, Django, Drupal 7 & 8. 
+Docker is a great tools for developers to manage  projects. At COLAB,e have docker containers for many development environments such as WordPress, Django, Drupal 7 & 8.
 
-As we rolled out docker to the old sites and the new, we ran into a problem of how do we manage updates to the Dockerfile, and docker-compose? How do we distribute those updates to 
-a team of developers? How do we make sure that new development environments are using the latest stable version of our internal docker environment?
+As we rolled out docker to the old sites and the new, we encountered a problem of how to manage updates to the Dockerfile, docker-compose, as well as how to distribute those updates to a team of developers? Other issues we tackled were how to ensure that new development environments are using the latest stable version of our internal docker environment.
 
-The first couple of stabs at this solution was by a senior developer. 
-A simple python cli was first used to solve this problem. Then this was rebuilt as a more complicated golang cli. 
+The first couple of attempts at this solution were by a senior developer. 
+A simple python cli was first used to solve this problem. This was then rebuilt as a more complicated golang cli.
 
-This go docker cli had a start, restart and update commands. I was tasked with the 2.0 version of the cli, which would handle:
+The go docker cli had a start, restart and update commands. I was tasked with the 2.0 version of the cli, which would handle:
 
-- nuke : kill docker container and rebuild a new container.
-- build : Build a container, without killing the old one.
-- init : initialize a new docker container.
-- move : move the root of the WordPress environment from a /web/ root too a ./ root.
+- nuke : Terminate the docker container and rebuild a new container.
+- build : Build a container, without terminate the old one.
+- init : Initialize a new docker container.
+- move : Move the root of the WordPress environment from a /web/ root to a ./ root.
 
-As the Docker Api is used internally in this Cli nuke and build were easy. The Container id was sent to the docker api, and the task is accomplished.
+As the Docker Api is used internally in this Cli, nuke and build were easily executed. The Container id was sent to the docker api, and the task is accomplished.
 
-The move and init commands are tricky. As we use docker-compose.yaml files
-these yaml files need to be parsed. Before we were using the io package to read and write to the file. This solution works for simple reading and writing, but to parse the whole file we need to create a map.
+The move and init commands are tricky. As we use docker-compose.yaml files,
+these yaml files need to be parsed. Before, we utilized the io package to read and write to the file. This solution works for simple reading and writing, but to parse the whole file we need to create a map.
 
-This is done with the use of [viper](https://github.com/spf13/viper). A config parsing program written in go. 
+This is done with the use of [viper](https://github.com/spf13/viper), it is a config parsing program written in go.
 
 With this in hand we were free to parse and write our yaml file. But like all production based work, there was a catch. Due to the nature of agency work, our yaml file cannot be easily placed in a type struct. To solve this problem we needed to use a interface type to manage the config file.
 
-With all of the challenges understood, the cli could finally take shape.
+With all of the challenges understood and addressed, the cli could finally take shape.
 
-Our default yaml file is of this format
+Our default yaml file is of this format:
 
 ```yaml
 initalkey:
@@ -53,6 +51,7 @@ initalkey:
 When the program is run, 
 
 We first initialize the docker-compose.yml
+
 ```go
 func getInitalKey(fileName string) {
     //get path to file name
@@ -118,7 +117,7 @@ func dockerInit() (string, error) {
 }
 ```
 
-We prompt the user if the current base of the site path is the correct if not we trigger a recursive function which asks the user to input a domain they would like to use.
+We prompt the user if the current base of the site path is correct. If not, we trigger a recursive function which asks the user to input a domain they would like to use.
 
 ```go
 func setupDockerComposePromt(siteName string) error {
@@ -155,6 +154,7 @@ func recursiveTopLevelPrompt() error {
 	return nil
 }
 ```
+
 With this initial key, we parse the yaml file using viper.
 
 Then set the key for the container name and the virtual host. An internal key that 
@@ -172,4 +172,4 @@ func setupDockerCompose(siteName string) {
 }
 ```
 
-Now when we run our --init flag to the cli, we can build new containers with the docker api and build new contianers easily and efficiently. 
+Now when we run our --init flag to the cli, we can build new containers with the docker api in an easy and efficient manner.. 

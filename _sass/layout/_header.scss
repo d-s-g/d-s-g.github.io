@@ -5,6 +5,22 @@
 ///
 
 /* Header */
+	.about-page header.major {
+		position: absolute;
+		z-index: 1;
+		top: 40vh;
+		left: 10vw;
+
+		h1 {
+			display: block;
+			background-color: rgba(155,241,255,0.9);
+			padding-left: 25px;
+
+			&:after {
+			 height: 0;
+			}
+		}
+	}
 
 	@include keyframes('reveal-header') {
 		0% { top: -4em; opacity: 0; }
