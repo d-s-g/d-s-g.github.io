@@ -5,19 +5,35 @@
 ///
 
 /* Header */
-	.about-page header.major {
-		position: absolute;
-		z-index: 1;
-		top: 40vh;
-		left: 10vw;
+	.about-page {
+		
+		&--wrapper {
+			position: relative;
+		}
 
-		h1 {
-			display: block;
-			background-color: rgba(155,241,255,0.9);
-			padding-left: 25px;
+		header {
+			margin-bottom: 0;
+		}
 
-			&:after {
-			 height: 0;
+		header.major {
+			position: absolute;
+			z-index: 1;
+			bottom: 0;
+			left: 0;
+			transition: 150ms all ease-in;
+
+			@media (min-width: 1024px) {
+				bottom: 60%;
+			}
+
+			h1 {
+				display: block;
+				background-color: rgba(155,241,255,0.9);
+				padding-left: 25px;
+
+				&:after {
+				height: 0;
+				}
 			}
 		}
 	}
